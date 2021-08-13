@@ -4,10 +4,23 @@ var columnDefs = [
     field: "make",
     sortable: true,
     filter: true,
-    rowGroup: true,
+    rowGroup: false,
+    resizable: true,
   },
-  { headerName: "Model", field: "model", sortable: true, filter: true },
-  { headerName: "Price", field: "price", sortable: true, filter: true },
+  {
+    headerName: "Model",
+    field: "model",
+    sortable: true,
+    filter: true,
+    resizable: true,
+  },
+  {
+    headerName: "Price",
+    field: "price",
+    sortable: true,
+    filter: true,
+    resizable: true,
+  },
 ];
 
 var autoGroupColumnDef = {
@@ -24,9 +37,10 @@ var rowData = [];
 var gridOptions = {
   columnDefs: columnDefs,
   autoGroupColumnDef: autoGroupColumnDef,
-  //   rowData: rowData,
+  rowData: rowData,
   rowSelection: "multiple",
   groupSelectsChildren: true,
+  unSortIcon: true,
 };
 
 var eGridDiv = document.querySelector("#myGrid");
@@ -49,3 +63,18 @@ function getSelectedRows() {
     .join(", ");
   alert("Selected nodes: " + selectedDataStringPresentation);
 }
+
+function onPriceFirst() {
+  gridOptions.columnApi.moveColumns(["price", "make", "model"]);
+}
+
+function onMakeFirst() {
+  gridOptions.columnApi.moveColumns(["make", "model", "price"]);
+}
+
+function onModelFirst() {
+  gridOptions.columnApi.moveColumns(["model", "make", "price"]);
+}
+
+// Documentation:
+// https://www.ag-grid.com/javascript-grid/getting-started/

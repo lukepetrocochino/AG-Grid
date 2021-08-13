@@ -55,15 +55,6 @@ agGrid
     gridOptions.api.setRowData(data);
   });
 
-function getSelectedRows() {
-  var selectedNodes = gridOptions.api.getSelectedNodes();
-  var selectedData = selectedNodes.map((node) => node.data);
-  var selectedDataStringPresentation = selectedData
-    .map((node) => node.make + " " + node.model)
-    .join(", ");
-  alert("Selected nodes: " + selectedDataStringPresentation);
-}
-
 function onPriceFirst() {
   gridOptions.columnApi.moveColumns(["price", "make", "model"]);
 }
